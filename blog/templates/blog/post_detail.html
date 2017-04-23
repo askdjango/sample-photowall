@@ -7,7 +7,28 @@
     .post_photo {
         max-width: 100%;
     }
+    .post-map {
+        width: 300px;
+        height: 300px;
+    }
 </style>
+
+<script>
+$(function() {
+    var myLatLng = {lat: -25.363, lng: 131.044};
+    var container = $('.post-map')[0];
+    var map = new google.maps.Map(container, {
+        zoom: 4,
+        center: myLatLng
+    });
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+    });
+});
+</script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 {% endblock %}
 
 {% block content %}
@@ -23,6 +44,9 @@
                         <img src="{{ post.photo.url }}" class="post_photo" />
                     {% endif %}
                     <hr/>
+
+                    <div class="post-map">
+                    </div>
 
                     {{ post.content|linebreaks }}
                 </div>
